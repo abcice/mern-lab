@@ -11,3 +11,7 @@ async function index(req, res) {
     }
     
 }
+async function create(req, res, next) {
+    try{} catch{}
+
+}
