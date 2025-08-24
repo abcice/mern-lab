@@ -1,31 +1,27 @@
 import { useState, useEffect } from "react";
 import * as hootsAPI from "../../utilities/hoots-api";
-import styles from "./HootFeedPage.module.scss";
-
-import NavBar from "../../components/NavBar";
-import HootList from "../../components/HootList/HootList";
 import NewHootForm from "../../components/NewHootForm/NewHootForm";
+import HootList from "../../components/HootList/HootList";
 
-export default function HootFeedPage({ user, setUser }) {
+export default function HootFeedPage({ user }) {
   const [hoots, setHoots] = useState([]);
 
   useEffect(() => {
     async function fetchHoots() {
-      const hoots = await hootsAPI.getAll();
-      setHoots(hoots);
+      const data = await hootsAPI.getAll();
+      setHoots(data);
     }
     fetchHoots();
   }, []);
 
   async function handleAddHoot(hootText) {
-    const newHoot = await hootsAPI.create({ text: hootText });
-    setHoots([newHoot, ...hoots]); 
+    const newHoot = await hootsAPI.createHoot({ text: hootText });
+    setHoots([...hoots, newHoot]);
   }
 
   return (
-    <main className={styles.HootFeedPage}>
-      <NavBar user={user} setUser={setUser} />
-      <NewHootForm handleAddHoot={handleAddHoot} />
+    <main>
+      <NewHootForm handleHoot={handleAddHoot} />
       <HootList hoots={hoots} />
     </main>
   );

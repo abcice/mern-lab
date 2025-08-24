@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
-import { logOut } from '../../utilities/users-service';
+import { logOut } from '../utilities/users-service';
+import "../index.css";
+import styles from './NavBar.module.scss'
+
 
 export default function NavBar({ routes, user, setUser }) {
   function handleLogOut() {

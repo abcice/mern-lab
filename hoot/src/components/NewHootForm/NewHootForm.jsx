@@ -18,7 +18,7 @@ export default function NewHootForm({ handleHoot }) {
         placeholder="What's on your mind?"
         required
       />
-      <button type="submit">Submit</button>
+      <button type="submit">Hoot</button>
     </form>
   );
 }
